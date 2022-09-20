@@ -29,9 +29,19 @@ namespace projectAPI.Controllers
             return _quotes;
         }
 
-        public void Post(Quote quote)
+        public void Post([FromBody]Quote quote)
         {
             _quotes.Add(quote);
+        }
+
+        public void Put(int id, [FromBody] Quote quote)
+        {
+            _quotes[id]=(quote);
+        }
+
+        public void Delete(int id)
+        {
+            _quotes.RemoveAt(id);
         }
     }
 }
