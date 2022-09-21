@@ -4,44 +4,36 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using projectAPI.Models;
 
 namespace projectAPI.Controllers
 {
     public class QuotesController : ApiController
     {
-        static List<Quote> _quotes = new List<Quote>()
+        // GET: api/Quotes
+        public IEnumerable<string> Get()
         {
-            new Quote()
-            {
-                Id = 0, Author = "Einstein", Description = "Imagination is more important than knowledge",
-                Title = "Imagination"
-            },
-            new Quote()
-            {
-                Id = 1, Author = "Einstein", Description = "Imagination is more important than knowledge",
-                Title = "Imagination"
-            },
-        };
-
-        public IEnumerable<Quote> Get()
-        {
-            return _quotes;
+            return new string[] { "value1", "value2" };
         }
 
-        public void Post([FromBody]Quote quote)
+        // GET: api/Quotes/5
+        public string Get(int id)
         {
-            _quotes.Add(quote);
+            return "value";
         }
 
-        public void Put(int id, [FromBody] Quote quote)
+        // POST: api/Quotes
+        public void Post([FromBody]string value)
         {
-            _quotes[id]=(quote);
         }
 
+        // PUT: api/Quotes/5
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE: api/Quotes/5
         public void Delete(int id)
         {
-            _quotes.RemoveAt(id);
         }
     }
 }
